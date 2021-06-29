@@ -1,0 +1,7 @@
+div {
+    display: flex;
+    flex-wrap:wrap
+}
+div{
+    min-width: 30%;
+}
