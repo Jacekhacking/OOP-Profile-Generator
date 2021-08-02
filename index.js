@@ -1,8 +1,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer')
 const prompts = require('./prompts')
-var manager_data
-var employee_data
+var manager_data 
+var employee_data = []
 const htmlGenerator = require('./generator')
 
 class Employee {
@@ -19,14 +19,19 @@ class Manager extends Employee {
     }
 };
 class Engineer extends Employee {
+
     constructor(name, id, email, gitHub) {
+        
         super(name, id, email)
+        this.role = "Engineer"
         this.gitHub = gitHub;
     }
 }
 class Intern extends Employee {
+
     constructor(name, id, email, school) {
         super(name, id, email)
+        this.role = "Intern"
         this.school = school;
     }
 }
@@ -44,14 +49,11 @@ function askOther() {
                 break;
 
             default:
-                // const renderedHtml = htmlGenerator(manager_data);
-                // fs.writeFileSync('./newReadMe.md', renderedHtml)
-                console.log(employee_data);
+                const renderedHtml = htmlGenerator(manager_data,employee_data);
+                    fs.writeFileSync('./index.html', renderedHtml)
                 return;
         }
         inquirer.prompt(nextPrompt).then(function (data) {
-            console.log(data);
-
             // save data 
             if (data.gitHub != undefined) {
                 employee_data.push(new Engineer(data.name, data.id, data.email, data.gitHub))
