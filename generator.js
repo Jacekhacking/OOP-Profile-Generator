@@ -5,10 +5,10 @@ function htmlGenerator(manager_data, employee_data) {
         return `<div class="col-sm">
         <div class="card-body">
             <h5 class="card-title"> Manager: ${manager_data.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">job</h6>
+            <h6 class="card-subtitle mb-2 text-muted">${manager_data.id}</h6>
             <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                Manager office number: ${manager_data.officeNumber}
+                Contact: ${manager_data.email}
             </p>
         </div>
     </div>`
@@ -21,11 +21,10 @@ function htmlGenerator(manager_data, employee_data) {
             var internsHtml = interns.map(function(intern){
                 return `<div class="col-sm">
                 <div class="card-body">
-                <h5 class="card-title"> Manager: ${intern.name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">job</h6>
+                <h5 class="card-title"> Intern: ${intern.name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">ID: ${intern.id}</h6>
                 <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                ${intern.name} is a new intern at our company. Potential future with company is still undecided. You can reach them at ${intern.email} and they are currently attending or have graduated from ${intern.school}
                 </p>
                 </div>
                 </div>`
@@ -33,16 +32,14 @@ function htmlGenerator(manager_data, employee_data) {
             return internsHtml.join("")
             };
     function engineerGenerator() {
-        var engineer = employee_data.filter(employee => {employee.role === "Engineer"}) 
-        console.log("interns" + " " + engineer[0].name);
+        var engineer = employee_data.filter( function (employee) { return employee.role === "Engineer"}) 
             var engineerHtml = engineer.map(function(engineer){
                 return `<div class="col-sm">
                 <div class="card-body">
-                <h5 class="card-title"> Manager: ${engineer.name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">job</h6>
+                <h5 class="card-title"> Engineer: ${engineer.name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">ID: ${engineer.id}</h6>
                 <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                ${engineer.name} is an engineer at our company. You can reach them at ${engineer.email} and their github is ${engineer.github}.
                 </p>
                 </div>
                 </div>`
